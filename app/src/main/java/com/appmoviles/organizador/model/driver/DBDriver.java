@@ -37,13 +37,13 @@ public class DBDriver extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //CREATE TABLES
         String createSubject="CREATE TABLE $TABLE ($ID TEXT PRIMARY KEY, $NAME TEXT, $DATE INTEGER)";
-        createSubject.replace("$TABLE",SUBJECT_TABLE)
+        createSubject=createSubject.replace("$TABLE",SUBJECT_TABLE)
                 .replace("$ID",SUBJECT_ID)
                 .replace("$NAME",SUBJECT_NAME)
                 .replace("$DATE",SUBJECT_DATE);
 
-        String createTask="CREATE TABLE $TABLE ($ID TEXT PRIMARY KEY, $NAME TEXT, $DESC TEXT,$COMPLETE INTEGER,$FK TEXT, FOREING KEY ($FK) REFERENCES $FTABLE($FID))";
-        createTask.replace("$TABLE",TASK_TABLE)
+        String createTask="CREATE TABLE $TABLE ($ID TEXT PRIMARY KEY, $NAME TEXT, $DESC TEXT, $COMPLETE INTEGER, $FK TEXT, FOREIGN KEY ($FK) REFERENCES $FTABLE($FID))";
+        createTask=createTask.replace("$TABLE",TASK_TABLE)
                 .replace("$ID",TASK_ID)
                 .replace("$NAME",TASK_NAME)
                 .replace("$DESC",TASK_DESC)
@@ -55,6 +55,7 @@ public class DBDriver extends SQLiteOpenHelper {
 
         db.execSQL(createSubject);
         db.execSQL(createTask);
+
     }
 
     @Override
